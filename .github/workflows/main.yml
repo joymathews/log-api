@@ -36,6 +36,9 @@ jobs:
       
       - name: Display contents of current directory
         run: ls
+      
+      -name: Recursively display contents of venv directory
+        run: ls -R ./venv
    
       - name: Create Zipfile archive of Dependencies
         run: |
