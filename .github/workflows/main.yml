@@ -6,19 +6,19 @@ on:
 jobs:
   continuous-integration:
     runs-on: ubuntu-latest
-    steps:
-      -uses: actions/checkout@v2
+    steps: 
+      - uses: actions/checkout@v2
 
-      -name: Set up Python 3.8
+      - name: Set up Python 3.8
         uses: actions/setup-python@v2
         with:
           python-version: 3.8
           architecture: x64
       
-      -name: Install Python Virtual Environment
+      - name: Install Python Virtual Environment
         run: pip3 install virtualenv
       
-      -name: Setu up Virtual Environment
+      - name: Set up Virtual Environment
         uses: actions/cache@v2
         id: cache-venv
         with:
@@ -26,20 +26,20 @@ jobs:
           key: ${{ runner.os }}-venv-${{ hashFiles('**/requirements.txt') }}
           restore-keys: ${{ runner.os }}-venv-
       
-      -name: Activate and Install Dependencies into virtual environment
+      - name: Activate and Install Dependencies into virtual environment
+        if: steps.cache-venv.outputs.cache-hit != 'true'
         run: |
           python -m venv venv && source venv/bin/activate && pip install -r requirements.txt
-          if: steps.cache-venv.outputs.cache-hit != 'true'
    
-      -name: Create Zipfile archive of Dependencies
+      - name: Create Zipfile archive of Dependencies
         run: |
           cd ./venv/lib/python3.8/site-packages
           zip -r9 ../../../../api.zip 
       
-      -name: Add App to Zip file
+      - name: Add App to Zip file
         run: cd ./src && zip -g ../api.zip -r
       
-      -name: Upload zip file artifact
+      - name: Upload zip file artifact
         uses: actions/upload-artifact@v2
         with:
           name: api
