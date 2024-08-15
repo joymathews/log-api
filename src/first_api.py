@@ -7,7 +7,7 @@ import os
 from mangum import Mangum
 load_dotenv()
 app = FastAPI()
-
+print("DAte")
 def validate_google_token(token: str):
     try:
         CLIENT_ID = os.getenv("CLIENT_ID")
