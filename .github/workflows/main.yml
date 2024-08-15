@@ -9,10 +9,10 @@ jobs:
     steps: 
       - uses: actions/checkout@v2
 
-      - name: Set up Python 3.8
+      - name: Set up Python 3.12.5
         uses: actions/setup-python@v2
         with:
-          python-version: 3.8
+          python-version: 3.12.5
           architecture: x64
       
       - name: Install Python Virtual Environment
@@ -33,7 +33,7 @@ jobs:
    
       - name: Create Zipfile archive of Dependencies
         run: |
-          cd ./venv/lib/python3.8/site-packages
+          cd ./venv/lib/python3.12.5/site-packages
           zip -r9 ../../../../api.zip 
       
       - name: Add App to Zip file
