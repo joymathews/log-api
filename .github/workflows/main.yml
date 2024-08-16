@@ -2,7 +2,7 @@ name: CI/CD Pipeline
 
 on:
   push:
-    branches: [ create_github_actions ]
+    branches: [ main ]
 jobs:
   continuous-integration:
     runs-on: ubuntu-latest
