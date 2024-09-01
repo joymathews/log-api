@@ -3,6 +3,8 @@ name: CI/CD Pipeline
 on:
   push:
     branches: [ main ]
+  pull_request:
+    branches: [ main ]
 jobs:
   continuous-integration:
     runs-on: ubuntu-latest
@@ -30,6 +32,10 @@ jobs:
         run: |
           python -m venv venv && source venv/bin/activate && pip install -r requirements.txt
       
+      - name: Run Tests
+        run: |
+          source venv/bin/activate && pytest ./unit_tests/weight_log_api_tests.py
+
       - name: Create Zipfile archive of Dependencies
         run: |
           cd ./venv/lib/python3.12/site-packages
