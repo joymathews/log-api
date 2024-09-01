@@ -2,7 +2,7 @@ name: CI/CD Pipeline
 
 on:
   push:
-    branches: [ main, Update_CI_Action ]
+    branches: [ main ]
 jobs:
   continuous-integration:
     runs-on: ubuntu-latest
